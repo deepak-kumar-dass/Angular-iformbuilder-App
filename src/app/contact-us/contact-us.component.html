@@ -1,0 +1,140 @@
+<div class="container">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">iformbuilder App</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <!-- <li class="nav-item">
+            <a class="nav-link active" aria-current="page" href="#">Home</a>
+          </li> -->
+          <!-- <li class="nav-item">
+            <a class="nav-link" routerLink="booking">Records</a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+  <section class="mt-3">
+    <h1 class="text-uppercase text-center">Contact Us</h1>
+    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.</p>
+    <div class="row">
+      <div class="col-md-12">
+        <!-- Bootstrap 5 starter form -->
+        <form [formGroup]="contactForm" (ngSubmit)="submitForm()">
+
+          <!-- Name input -->
+          <!-- {{registerFormControl.cf_name}} -->
+          <div class="mb-3">
+            <label class="form-label" for="name">Name</label>
+            <input class="form-control" id="name" formControlName="cf_name" name="cf_name" type="text" placeholder="Name" />
+            <span class="text-danger"
+              *ngIf="(submitted) && registerFormControl.cf_name.errors?.required">
+              Name is required.
+            </span>
+          </div>
+
+          <!-- Email address input -->
+          <div class="mb-3">
+            <label class="form-label" for="emailAddress">Email Address</label>
+            <input class="form-control" formControlName="cf_email" id="emailAddress" name="cf_email" type="email" placeholder="Email Address" />
+            <span class="text-danger"
+              *ngIf="(submitted) && registerFormControl.cf_email.errors?.required">
+              Email is required.
+            </span>
+          </div>
+
+          <!-- Phone Number -->
+
+          <div class="mb-3">
+            <label class="form-label" for="emailAddress">Phone</label>
+            <input class="form-control" id="Phone" formControlName="cf_phone" name="cf_phone" type="tel" placeholder="Phone" />
+            <span class="text-danger"
+              *ngIf="(submitted) && registerFormControl.cf_phone.errors?.required">
+              Phone number is required.
+            </span>
+            <span class="text-danger"
+              *ngIf="(submitted) && registerFormControl.cf_phone.errors?.pattern">
+              Phone is required.
+            </span>
+          </div>
+
+          <!-- Message input -->
+          <div class="mb-3">
+            <label class="form-label" for="message">Message</label>
+            <textarea class="form-control" id="message" formControlName="cf_message" name="cf_message" type="text" placeholder="Message"
+              style="height: 10rem;"></textarea>
+            <span class="text-danger"
+              *ngIf="(submitted) && registerFormControl.cf_message.errors?.required">
+              Message is required.
+            </span>
+          </div>
+
+          <!-- Form submit button -->
+          <div class="d-grid">
+            <button class="btn btn-primary btn-lg" [disabled]='IsCalling' type="submit">
+              <span *ngIf="!IsCalling ; else showLoader">Submit</span>
+              <ng-template #showLoader>
+                <div class="spinner-border text-success" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </ng-template>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <!-- Display Records -->
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <h2 class="text-center text-uppercase text-decoration-underline">All Records</h2>
+        <table class="table table-hover ">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Phone</th>
+              <th scope="col">Message</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let record of records">
+              <th scope="row">{{ record.id }}</th>
+              <td>{{ record.cf_name }}</td>
+              <td>{{ record.cf_email }}</td>
+              <td>{{ record.cf_phone }}</td>
+              <td>{{ record.cf_message }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24">
+          <use xlink:href="#bootstrap"></use>
+        </svg>
+      </a>
+      <span class="text-muted">© 2022 Company, Inc</span>
+    </div>
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24">
+            <use xlink:href="#twitter"></use>
+          </svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24">
+            <use xlink:href="#instagram"></use>
+          </svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24">
+            <use xlink:href="#facebook"></use>
+          </svg></a></li>
+    </ul>
+  </footer>
+</div>
